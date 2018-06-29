@@ -1,0 +1,73 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../byu-calendar-filters/byu-calendar-filters.html">
+
+<!--//cdn.byu.edu/byu-calendar-row/latest/byu-calendar-row.css'-->
+<link rel="import" href="https://cdn.byu.edu/byu-calendar-row/latest/byu-calendar-row.css">
+<script src="https://cdn.byu.edu/byu-calendar-row/latest/byu-calendar-row.js"></script>
+
+<dom-module id="byu-calendar">
+
+    <template>
+        <style>
+
+        </style>
+        <slot name="title" id="title"></slot>
+        <byu-calendar-filters on-byu-filter-changed="filterChanged">
+
+        </byu-calendar-filters>
+        <!--<byu-calendar-navigation>-->
+
+        <!--</byu-calendar-navigation>-->
+
+        <byu-calendar-row type="tile">
+            <!-- This date should be provided in the format YYYY-MM-DD  -->
+            <p slot="date">2017-02-15</p>
+            <a href="https://calendar.byu.edu" slot="title">category(ies): [[ getCategories(categoryIds) ]]</a>
+
+            <p slot="time">7:00 PM MT</p>
+            <p slot="location">Wilkinson Ballroom</p>
+            <p slot="price">Tickets: $5.00</p>
+            <a href="https://calendar.byu.edu" slot="link">SEE FULL EVENT</a>
+            <a href="http://www.facebook.com" slot="tickets-link">TICKETS</a>
+
+        </byu-calendar-row>
+    </template>
+    <script>
+        class BYUCalendar extends Polymer.Element {
+            static get is() {
+                return 'byu-calendar';
+            }
+
+            constructor() {
+                super();
+                this.categoryIds = [];
+            }
+
+
+
+            filterChanged(filters) {
+//                console.log(filters.detail);
+//                    get filter value and true/false from filters
+                if (filters.detail.value == true) {
+                    this.categoryIds = [...this.categoryIds, filters.detail.category];
+//                    console.log(filters.detail);
+                } else { // remove it
+                    this.categoryIds = this.categoryIds.filter(function (categoryId) {
+                       return categoryId !== filters.detail.category
+                    });
+                }
+
+
+            }
+            getCategories(categoryIds) {
+                return categoryIds.join(", ");
+            }
+
+        }
+
+        window.customElements.define(BYUCalendar.is, BYUCalendar);
+
+    </script>
+
+
+</dom-module>

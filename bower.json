@@ -1,0 +1,21 @@
+{
+  "name": "byu-calendar",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Katria Lesser <katrialynn18@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^2.5.0"
+  }
+}

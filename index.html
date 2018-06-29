@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+        <link rel="import" href="components/byu-calendar/byu-calendar.html">
+</head>
+<body>
+
+
+<byu-calendar>
+        <h2 slot="title">This is the Title</h2>
+
+
+
+
+</byu-calendar>
+
+<h2>New Setup</h2>
+<h3>Filters</h3>
+
+<byu-calendar-filters categoryOptions="6+7+90" on-byu-filter-changed="filterChanged">
+
+</byu-calendar-filters>
+
+<h3>Display</h3>
+<byu-calendar
+        title="Upcoming Events"
+        categories="6+7+90"
+        days="7"
+        price="0"
+        display="4"
+        display-type="Image-Row"
+        limit="4">
+</byu-calendar>
+
+<!--<byu-calendar-filters>Testing Filters-->
+
+
+
+
+<!--</byu-calendar-filters>-->
+
+</body>
+
+</html>

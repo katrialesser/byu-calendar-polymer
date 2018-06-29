@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
+
+
+<dom-module id="byu-calendar-filters">
+
+    <template>
+        <style>
+
+        </style>
+
+        <div id="inner-filter">
+            <!-- build one for each one they provide-->
+
+            <!--<div is="dom-repeat" items="{{employees}}">-->
+                <!--<div>First name: <span>{{item.first}}</span></div>-->
+                <!--<div>Last name: <span>{{item.last}}</span></div>-->
+            <!--</div>-->
+
+            <!--go get category names using that api-->
+            <dom-repeat items="{{ categoriesWanted}}">
+                <template>
+                    <input type="checkbox" name="{{ categoryName }}" value="{{ categoryId }}" on-change="filterChange">{{ categoryName }}<br>
+                </template>
+            </dom-repeat>
+
+            <input type="checkbox" name="category" value="1" on-change="filterChange">Academic1<br>
+            <input type="checkbox" name="category2" value="2" on-change="filterChange">Education2<br>
+        </div>
+    </template>
+    <script>
+        class BYUCalendarFilters extends Polymer.Element {
+            static get is() {
+                return 'byu-calendar-filters';
+            }
+
+            filterChange(e) {
+//                console.log(e.currentTarget.value); // 1 or 2
+                // adjust this function to work with checkboxes or anything else we have later
+
+//                console.dir(e.target);
+//                console.log(e.target.checked);
+
+//                filterInfo = [e.currentTarget.value, e.target.checked];
+                const filterInfo = {category: e.currentTarget.value, value: e.target.checked};
+                this.dispatchEvent(new CustomEvent('byu-filter-changed', {
+//                    detail: e.currentTarget.value
+                    detail: filterInfo
+                } ));
+
+            }
+
+
+        }
+
+
+
+        window.customElements.define(BYUCalendarFilters.is, BYUCalendarFilters);
+
+    </script>
+
+
+</dom-module>
